@@ -9,6 +9,16 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
+
+    /**
+     * [___construct 进行权限校验]
+     * @return [type] [description]
+     */
+    public function ___construct()
+    {
+        $this->Middleware('auth', ['except' => ['show']]);
+    }
+
     /**
      * [show 显示用户]
      * @param  User   $user [description]
@@ -25,7 +35,7 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-
+        $this->authorize('update', $user);
         $data = $request->all();
         if ($request->file('avater')) {
             $file   = new ImageUploadHandler();
@@ -46,7 +56,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-
+        $this->authorize('update', $user); //进行策略验证
         return view('users.edit', compact('user'));
 
     }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Categroy extends Model
+class Categroy extends EloquentModel
 {
     protected $table = 'categroys';
 
